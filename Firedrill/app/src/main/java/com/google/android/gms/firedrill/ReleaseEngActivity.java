@@ -47,6 +47,7 @@ public class ReleaseEngActivity extends Activity {
         gameId = getIntent().getStringExtra("game_id");
         percentage =  (TextView) findViewById(R.id.percentage);
         rollout = (SeekBar) findViewById(R.id.rollout);
+        rollout.setEnabled(false);
         rollout.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -55,6 +56,7 @@ public class ReleaseEngActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                if (rollout.isEnabled()) return;
                 if (lastRollout == percentages.length - 1) {
                     // We rolled out to 100% and won!
                     WinActivity.start(ReleaseEngActivity.this, gameId);
@@ -70,7 +72,6 @@ public class ReleaseEngActivity extends Activity {
                     countdown.start();
                 }
                 seekBar.setProgress(++lastRollout);
-                seekBar.setEnabled(false);
                 percentage.setText("Public rollout: " + percentages[lastRollout]);
             }
 
@@ -110,6 +111,8 @@ public class ReleaseEngActivity extends Activity {
         LinearLayout teams = (LinearLayout) findViewById(R.id.teams);
         teams.removeAllViews();
         boolean shippable = true;
+        SeekBar seekBar = (SeekBar) findViewById(R.id.rollout);
+        seekBar.setEnabled(!clientTeams.isEmpty());
         StringBuilder crash = new StringBuilder();
         for (ClientTeam team : clientTeams) {
             CheckBox checkBox = new CheckBox(this);
@@ -120,10 +123,10 @@ public class ReleaseEngActivity extends Activity {
             teams.addView(checkBox);
             shippable &= team.shippable;
             if (!team.shippable) {
+                seekBar.setEnabled(false);
                 appendCrashStackTrace(crash, team.name);
             }
         }
-        rollout.setEnabled(shippable);
         stackTrace.setText(crash.toString());
     }
 
