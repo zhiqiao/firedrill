@@ -16,7 +16,7 @@ public class ClientTeam {
 
     public ClientTeam() {
         this.name = "";
-        this.shippable = false;
+        this.shippable = true;
         this.codingPercentage = 0;
     }
 
