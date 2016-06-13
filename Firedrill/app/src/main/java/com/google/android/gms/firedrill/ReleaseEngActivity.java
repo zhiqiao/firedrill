@@ -18,6 +18,9 @@ public class ReleaseEngActivity extends Activity {
     String gameId;
     int lastRollout = 0;
 
+    TextView percentage;
+    SeekBar rollout;
+
     String[] percentages = new String[] {"0%", "0.02%", "0.1%", "1%", "5%", "25%", "50%", "100%"};
 
     public static void start(Context context, String gameId) {
@@ -29,8 +32,8 @@ public class ReleaseEngActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_release_eng);
         gameId = getIntent().getStringExtra("game_id");
-        final TextView percentage = (TextView) findViewById(R.id.percentage);
-        SeekBar rollout = (SeekBar) findViewById(R.id.rollout);
+        percentage =  (TextView) findViewById(R.id.percentage);
+        rollout = (SeekBar) findViewById(R.id.rollout);
         rollout.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -54,12 +57,15 @@ public class ReleaseEngActivity extends Activity {
     public void onTeamsChanged(List<ClientTeam> clientTeams) {
         LinearLayout teams = (LinearLayout) findViewById(R.id.teams);
         teams.removeAllViews();
+        boolean shippable = true;
         for (ClientTeam team : clientTeams) {
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(team.name);
             checkBox.setChecked(team.shippable);
             checkBox.setTextColor(team.shippable ? Color.GREEN : Color.RED);
             teams.addView(checkBox);
+            shippable &= team.shippable;
         }
+        rollout.setEnabled(shippable);
     }
 }
