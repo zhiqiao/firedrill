@@ -15,6 +15,6 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/larry"/>
+        android:src="@drawable/high_expectations_larry"/>
 
 </LinearLayout>
