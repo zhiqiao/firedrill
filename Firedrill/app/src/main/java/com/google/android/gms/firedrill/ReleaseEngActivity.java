@@ -116,10 +116,10 @@ public class ReleaseEngActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new AppInviteInvitation.IntentBuilder("[ACTION REQUIRED] Please dial into this meeting ASAP")
-                        .setEmailSubject("go/meet/" + gameId)
-                        .setDeepLink(Uri.parse("gmscore.google.com/" + gameId))
+                        .setDeepLink(Uri.parse("go/meet/" + gameId))
                         .setCustomImage(Uri.parse("https://lh4.ggpht.com/fX0oncZTwPIETqwHYjYzW2o44N3NqsAB_X16KTJzTDFK4UdcGrtKaMxuVtCX-3Ovzqw=w100"))
-                        .setMessage("If you don't care about product excellence you can stop reading now.")
+                        .setEmailSubject("go/meet/" + gameId)
+                        .setEmailHtmlContent("If you don't care about product excellence you can stop reading now.\nThe GmsCore team needs your help to ensure a quality and timely launch.\nPlease dial into the release team meeting at %%APPINVITE_LINK_PLACEHOLDER%% ASAP.\nThanks!")
                         .build();
                 startActivityForResult(intent, 12345);
             }
