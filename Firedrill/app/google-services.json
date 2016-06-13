@@ -10,6 +10,37 @@
       "client_info": {
         "mobilesdk_app_id": "1:661750983584:android:7ec8e4e910da8977",
         "android_client_info": {
+          "package_name": "com.google.hack.firedrill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661750983584-mh0slk75g1o395b3cguba95a2jk98fsq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPJ75y4CDbP5Q9vYCB78VN6CSjRfj14nA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661750983584:android:68622a7b516ff5ef",
+        "android_client_info": {
           "package_name": "com.google.android.gms.firedrill"
         }
       },
