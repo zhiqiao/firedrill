@@ -70,7 +70,7 @@ public class ReleaseEngActivity extends Activity {
             teams.addView(checkBox);
             shippable &= team.shippable;
             if (!team.shippable) {
-                appendCrashStackTrace(sb, team.name));
+                appendCrashStackTrace(crash, team.name);
             }
         }
         rollout.setEnabled(shippable);
