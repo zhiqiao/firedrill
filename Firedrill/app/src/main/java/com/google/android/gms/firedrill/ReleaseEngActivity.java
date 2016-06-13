@@ -62,7 +62,7 @@ public class ReleaseEngActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                if (lastRollout == percentages.length - 1) {
+                if (lastRollout == percentages.length - 2) {
                     // We rolled out to 100% and won!
                     WinActivity.start(ReleaseEngActivity.this, gameId);
                     return;
