@@ -31,15 +31,18 @@ public class ClientTeam {
 
     @Exclude
     public void code() {
-        codingPercentage += Config.getCodingSpeed();
-        if (codingPercentage >= 100) {
-            shippable = true;
-            codingPercentage = 0;
-        } else if (shippable == true) {
+        if (shippable == true) {
             codingPercentage -= Config.getCodingSpeed();
             if (codingPercentage <= -50) {
                 shippable = false;
             }
+            return;
+        }
+
+        codingPercentage += Config.getCodingSpeed();
+        if (codingPercentage >= 100) {
+            shippable = true;
+            codingPercentage = 0;
         }
     }
 }
