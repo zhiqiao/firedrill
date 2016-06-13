@@ -55,6 +55,11 @@ public class ReleaseEngActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                if (lastRollout == percentages.length - 1) {
+                    // We rolled out to 100% and won!
+                    WinActivity.start(ReleaseEngActivity.this, gameId);
+                    return;
+                }
                 Random gen = new Random();
                 int random = gen.nextInt(Math.min(clientTeams.size(), 3));
                 for (int i = 0; i< random; i++) {
@@ -67,10 +72,6 @@ public class ReleaseEngActivity extends Activity {
                 seekBar.setProgress(++lastRollout);
                 seekBar.setEnabled(false);
                 percentage.setText("Public rollout: " + percentages[lastRollout]);
-                if (lastRollout == percentages.length - 1) {
-                    // We rolled out to 100% and won!
-                    WinActivity.start(ReleaseEngActivity.this);
-                }
             }
 
             @Override
