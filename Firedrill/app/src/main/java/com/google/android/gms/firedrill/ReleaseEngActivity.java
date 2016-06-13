@@ -22,7 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class ReleaseEngActivity extends Activity {
@@ -30,6 +32,7 @@ public class ReleaseEngActivity extends Activity {
     String gameId;
     int lastRollout = 0;
     final List<ClientTeam> clientTeams = new ArrayList<>();
+    final Map<ClientTeam, DatabaseReference> refMAp = new HashMap<>();
 
     TextView percentage;
     SeekBar rollout;
@@ -71,9 +74,10 @@ public class ReleaseEngActivity extends Activity {
 
                     int index = gen.nextInt(clientTeams.size());
                     System.out.println("*********" + index);
-                    clientTeams.get(index).shippable = false;
+                    ClientTeam team = clientTeams.get(index);
+                    team.shippable = false;
+                    refMAp.get(team).setValue(team);
                 }
-                onTeamsChanged(clientTeams);
                 if (lastRollout == 0) {
                     countdown.start();
                 }
@@ -101,7 +105,9 @@ public class ReleaseEngActivity extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 clientTeams.clear();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    clientTeams.add(child.getValue(ClientTeam.class));
+                    ClientTeam team = child.getValue(ClientTeam.class);
+                    clientTeams.add(team);
+                    refMAp.put(team, child.getRef());
                 }
                 onTeamsChanged(clientTeams);
             }
