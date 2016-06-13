@@ -60,6 +60,10 @@ public class ReleaseEngActivity extends Activity {
                 seekBar.setProgress(++lastRollout);
                 seekBar.setEnabled(false);
                 percentage.setText("Public rollout: " + percentages[lastRollout]);
+                if (lastRollout == percentages.length - 1) {
+                    // We rolled out to 100% and won!
+                    WinActivity.start(ReleaseEngActivity.this);
+                }
             }
 
             @Override
