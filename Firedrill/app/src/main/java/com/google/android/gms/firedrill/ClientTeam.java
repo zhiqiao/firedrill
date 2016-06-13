@@ -2,6 +2,8 @@ package com.google.android.gms.firedrill;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 /**
  * Created by shayba on 6/13/16.
@@ -29,7 +31,7 @@ public class ClientTeam {
 
     @Exclude
     public void code() {
-        codingPercentage++;
+        codingPercentage += Config.getCodingSpeed();
         if (codingPercentage >= 100) {
             shippable = true;
         }
