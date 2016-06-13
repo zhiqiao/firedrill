@@ -7,13 +7,16 @@ import android.os.Bundle;
 
 public class WinActivity extends Activity {
 
-    public static void start(Context context) {
-        context.startActivity(new Intent(context, WinActivity.class));
+    String gameId;
+
+    public static void start(Context context, String gameId) {
+        context.startActivity(new Intent(context, WinActivity.class).putExtra("game_id", gameId));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
+        gameId = getIntent().getStringExtra("game_id");
     }
 }
