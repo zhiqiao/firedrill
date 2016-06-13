@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -62,7 +63,7 @@ public class ReleaseEngActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                if (lastRollout == percentages.length - 1) {
+                if (lastRollout == percentages.length - 2) {
                     // We rolled out to 100% and won!
                     WinActivity.start(ReleaseEngActivity.this, gameId);
                     return;
@@ -128,6 +129,25 @@ public class ReleaseEngActivity extends Activity {
                 startActivityForResult(intent, 12345);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("XXX", "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
+
+        if (requestCode == 12345) {
+            if (resultCode == RESULT_OK) {
+                // Get the invitation IDs of all sent messages
+                String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
+                for (String id : ids) {
+                    Log.d("XXX", "onActivityResult: sent invitation " + id);
+                }
+            } else {
+                // Sending failed or it was canceled, show failure message to the user
+                // ...
+            }
+        }
     }
 
     public void onTeamsChanged(List<ClientTeam> clientTeams) {
@@ -225,6 +245,9 @@ public class ReleaseEngActivity extends Activity {
             long secondsLeft = (millisUntilFinished / 1000) % 60;
             long minutesLeft = (millisUntilFinished / 1000) / 60;
             timer.setText("0" + minutesLeft + ":" + secondsLeft);
+            if (millisUntilFinished <= 0) {
+                LoseActivity.start(ReleaseEngActivity.this, gameId);
+            }
         }
 
         @Override

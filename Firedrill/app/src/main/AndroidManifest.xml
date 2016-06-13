@@ -28,7 +28,15 @@
         <activity
             android:name=".WinActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".InviteReceivedActivity"></activity>
+        <activity android:name=".InviteReceivedActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="go.ext.google.com" android:scheme="http"/>
+                <data android:host="go.ext.google.com" android:scheme="https"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
