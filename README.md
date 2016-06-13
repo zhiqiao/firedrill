@@ -1,2 +1,2 @@
 # firedrill
-Hackathon project
+Hackathon project for June 2016 summit.
