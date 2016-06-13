@@ -56,18 +56,21 @@ public class ReleaseEngActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                if (rollout.isEnabled()) return;
                 if (lastRollout == percentages.length - 1) {
                     // We rolled out to 100% and won!
                     WinActivity.start(ReleaseEngActivity.this, gameId);
                     return;
                 }
                 Random gen = new Random();
-                int random = gen.nextInt(Math.min(clientTeams.size(), 3));
+                int random = gen.nextInt(Math.min(clientTeams.size() + 1, 3));
+                System.out.println("*********" + random);
                 for (int i = 0; i< random; i++) {
+
                     int index = gen.nextInt(clientTeams.size());
+                    System.out.println("*********" + index);
                     clientTeams.get(index).shippable = false;
                 }
+                onTeamsChanged(clientTeams);
                 if (lastRollout == 0) {
                     countdown.start();
                 }
