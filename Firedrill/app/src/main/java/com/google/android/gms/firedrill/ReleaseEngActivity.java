@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -23,9 +25,11 @@ public class ReleaseEngActivity extends Activity {
 
     TextView percentage;
     SeekBar rollout;
+    TextView timer;
     TextView stackTrace;
 
     String[] percentages = new String[] {"0%", "0.02%", "0.1%", "1%", "5%", "25%", "50%", "100%"};
+    CountDown countdown;
 
     public static void start(Context context, String gameId) {
         context.startActivity(new Intent(context, ReleaseEngActivity.class).putExtra("game_id", gameId));
@@ -50,6 +54,9 @@ public class ReleaseEngActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                if (lastRollout == 0) {
+                    countdown.start();
+                }
                 seekBar.setProgress(++lastRollout);
                 seekBar.setEnabled(false);
                 percentage.setText("Public rollout: " + percentages[lastRollout]);
@@ -60,7 +67,11 @@ public class ReleaseEngActivity extends Activity {
 
             }
         });
+        Typeface tf = Typeface.createFromAsset(getAssets(), "digital-7.ttf");
+        timer = (TextView) findViewById(R.id.countdown);
+        timer.setTypeface(tf);
         stackTrace = (TextView) findViewById(R.id.stack_trace);
+        countdown = new CountDown();
     }
 
     public void onTeamsChanged(List<ClientTeam> clientTeams) {
@@ -86,5 +97,24 @@ public class ReleaseEngActivity extends Activity {
 
     private void appendCrashStackTrace(StringBuilder sb, String teamName) {
         sb.append(teamName + " has a bug!\n");
+    }
+
+    private class CountDown extends CountDownTimer {
+
+        public CountDown() {
+            super(1000 * 120, 1000);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            long secondsLeft = (millisUntilFinished / 1000) % 60;
+            long minutesLeft = (millisUntilFinished / 1000) / 60;
+            timer.setText("0" + minutesLeft + ":" + secondsLeft);
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
     }
 }
