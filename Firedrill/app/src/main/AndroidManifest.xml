@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReleaseEngActivity"></activity>
+        <activity android:name=".ReleaseEngActivity" />
+        <activity android:name=".ClientTeamEngActivity"></activity>
     </application>
 
 </manifest>
