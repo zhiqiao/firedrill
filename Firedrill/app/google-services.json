@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:661750983584:android:7ec8e4e910da8977",
         "android_client_info": {
-          "package_name": "com.google.hack.firedrill"
+          "package_name": "com.google.android.gms.firedrill"
         }
       },
       "oauth_client": [
