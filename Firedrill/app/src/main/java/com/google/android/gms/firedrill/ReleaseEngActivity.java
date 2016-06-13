@@ -63,6 +63,7 @@ public class ReleaseEngActivity extends Activity {
             checkBox.setText(team.name);
             checkBox.setChecked(team.shippable);
             checkBox.setTextColor(team.shippable ? Color.GREEN : Color.RED);
+            checkBox.setEnabled(false);
             teams.addView(checkBox);
             shippable &= team.shippable;
         }
