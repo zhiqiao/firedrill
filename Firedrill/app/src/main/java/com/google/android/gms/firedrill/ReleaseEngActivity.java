@@ -5,13 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -103,6 +106,19 @@ public class ReleaseEngActivity extends Activity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new AppInviteInvitation.IntentBuilder("[ACTION REQUIRED] Please dial into this meeting ASAP")
+                        .setEmailSubject("go/meet/" + gameId)
+                        .setDeepLink(Uri.parse("gmscore.google.com/" + gameId))
+                        .setCustomImage(Uri.parse("https://lh4.ggpht.com/fX0oncZTwPIETqwHYjYzW2o44N3NqsAB_X16KTJzTDFK4UdcGrtKaMxuVtCX-3Ovzqw=w100"))
+                        .setMessage("If you don't care about product excellence you can stop reading now.\nThe GmsCore team needs your help to ensure a quality and timely release.\nPlease dial into the release team meeting ASAP! Thanks.")
+                        .build();
+                startActivityForResult(intent, 12345);
             }
         });
     }

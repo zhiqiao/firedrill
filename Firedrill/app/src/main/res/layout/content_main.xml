@@ -42,6 +42,7 @@
             android:layout_marginRight="15dp"
             android:hint="GameID"
             android:textSize="24dp"
+            android:singleLine="true"
             android:maxLines="1"
             android:id="@+id/game_id"/>
 

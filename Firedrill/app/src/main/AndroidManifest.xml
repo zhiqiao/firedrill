@@ -11,20 +11,24 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReleaseEngActivity"
+        <activity
+            android:name=".ReleaseEngActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ClientTeamEngActivity"
+        <activity
+            android:name=".ClientTeamEngActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".WinActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".WinActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".InviteReceivedActivity"></activity>
     </application>
 
 </manifest>

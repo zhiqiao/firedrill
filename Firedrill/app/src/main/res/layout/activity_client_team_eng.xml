@@ -16,6 +16,7 @@
         android:layout_marginRight="15dp"
         android:hint="Team Name"
         android:textAlignment="center"
+        android:singleLine="true"
         android:maxLines="1"
         android:id="@+id/team_name"/>
 
