@@ -13,14 +13,18 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        TextView gameId = (TextView) findViewById(R.id.game_id);
+        final TextView gameId = (TextView) findViewById(R.id.game_id);
         Button join = (Button) findViewById(R.id.join);
         join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ReleaseEngActivity.class));
+                join(gameId.getText().toString());
             }
         });
+    }
+
+    private void join(String gameId) {
+
     }
 
 }
