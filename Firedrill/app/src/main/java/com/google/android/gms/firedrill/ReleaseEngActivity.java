@@ -117,8 +117,7 @@ public class ReleaseEngActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new AppInviteInvitation.IntentBuilder("Invite")
                         .setDeepLink(Uri.parse("go/meet/" + gameId))
-                        .setEmailSubject("go/meet/" + gameId)
-                        .setEmailHtmlContent("[ACTION REQUIRED] Please dial into this meeting ASAP: %%APPINVITE_LINK_PLACEHOLDER%%")
+                        .setMessage("[ACTION REQUIRED] Please dial into this meeting ASAP: go/meet/" + gameId)
                         .build();
                 startActivityForResult(intent, 12345);
             }
