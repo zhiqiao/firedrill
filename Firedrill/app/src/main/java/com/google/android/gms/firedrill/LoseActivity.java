@@ -19,7 +19,7 @@ public class LoseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_win);
+        setContentView(R.layout.activity_lose);
         gameId = getIntent().getStringExtra("game_id");
         DatabaseReference re = FirebaseDatabase.getInstance().getReference(gameId);
         re.removeValue();

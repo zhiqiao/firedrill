@@ -28,6 +28,9 @@
         <activity
             android:name=".WinActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoseActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".InviteReceivedActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

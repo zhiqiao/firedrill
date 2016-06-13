@@ -245,14 +245,11 @@ public class ReleaseEngActivity extends Activity {
             long secondsLeft = (millisUntilFinished / 1000) % 60;
             long minutesLeft = (millisUntilFinished / 1000) / 60;
             timer.setText("0" + minutesLeft + ":" + secondsLeft);
-            if (millisUntilFinished <= 0) {
-                LoseActivity.start(ReleaseEngActivity.this, gameId);
-            }
         }
 
         @Override
         public void onFinish() {
-
+            LoseActivity.start(ReleaseEngActivity.this, gameId);
         }
     }
 }
