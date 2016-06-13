@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ReleaseEngActivity" />
-        <activity android:name=".ClientTeamEngActivity"></activity>
+        <activity android:name=".ClientTeamEngActivity" />
+        <activity android:name=".WinActivity"></activity>
     </application>
 
 </manifest>
