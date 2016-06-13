@@ -20,6 +20,7 @@ public class ReleaseEngActivity extends Activity {
 
     TextView percentage;
     SeekBar rollout;
+    TextView stackTrace;
 
     String[] percentages = new String[] {"0%", "0.02%", "0.1%", "1%", "5%", "25%", "50%", "100%"};
 
@@ -52,12 +53,14 @@ public class ReleaseEngActivity extends Activity {
 
             }
         });
+        stackTrace = (TextView) findViewById(R.id.stack_trace);
     }
 
     public void onTeamsChanged(List<ClientTeam> clientTeams) {
         LinearLayout teams = (LinearLayout) findViewById(R.id.teams);
         teams.removeAllViews();
         boolean shippable = true;
+        StringBuilder crash = new StringBuilder();
         for (ClientTeam team : clientTeams) {
             CheckBox checkBox = new CheckBox(this);
             checkBox.setText(team.name);
@@ -66,7 +69,15 @@ public class ReleaseEngActivity extends Activity {
             checkBox.setEnabled(false);
             teams.addView(checkBox);
             shippable &= team.shippable;
+            if (!team.shippable) {
+                appendCrashStackTrace(sb, team.name));
+            }
         }
         rollout.setEnabled(shippable);
+        stackTrace.setText(crash.toString());
+    }
+
+    private void appendCrashStackTrace(StringBuilder sb, String teamName) {
+        sb.append(teamName + " has a bug!\n");
     }
 }

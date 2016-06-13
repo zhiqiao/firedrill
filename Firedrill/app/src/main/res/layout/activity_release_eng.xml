@@ -44,7 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="10"
-            android:text="No crashes (yet)"/>
+            android:text="No crashes (yet)"
+            android:id="@+id/stack_trace"/>
 
         <LinearLayout
             android:layout_width="match_parent"
