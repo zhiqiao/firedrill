@@ -130,6 +130,7 @@ public class ReleaseEngActivity extends Activity {
             "java.lang.IllegalArgumentException: expecting non-negative number",
             "java.lang.ClassNotFoundException: MainActivity",
             "java.lang.UnsupportedOperationException: TODO implement this",
+            "android.database.sqlite.SQLiteDatabaseCorruptException",
     };
 
     String[] classes = new String[] {
@@ -141,6 +142,13 @@ public class ReleaseEngActivity extends Activity {
             "ResponseMessageNano",
             "LogHelper",
             "PersistentService",
+            "ClearcutLoggerImpl",
+            "SqliteOpenHelper",
+            "MysteryBusinessLogic",
+            "LastMinuteHack",
+            "AbstractThreadSafeLooperWrapper",
+            "WorkerThread",
+            "MyRunnable",
     };
 
     String[] methods = new String[] {
@@ -151,10 +159,19 @@ public class ReleaseEngActivity extends Activity {
             "<init>(Context)",
             "<clinit>()",
             "busyLoop()",
+            "busyLoopLocked()",
             "drainBattery(int)",
             "collectAllUserInformation(Context, Account)",
             "corruptDatabase(Context)",
             "leakMemory(byte[])",
+            "getGservicesValue(Context, String, Object)",
+            "sync(Context)",
+            "crash()",
+            "hack(boolean)",
+            "isUserSignedIn()",
+            "isUserOptedIn()",
+            "incrementAndGet()",
+            "getAndIncrement()",
     };
 
     private void appendCrashStackTrace(StringBuilder sb, String teamName) {
