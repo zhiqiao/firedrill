@@ -115,10 +115,10 @@ public class ReleaseEngActivity extends Activity {
         findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new AppInviteInvitation.IntentBuilder("[ACTION REQUIRED] Please dial into this meeting ASAP")
+                Intent intent = new AppInviteInvitation.IntentBuilder("Invite")
                         .setDeepLink(Uri.parse("go/meet/" + gameId))
                         .setEmailSubject("go/meet/" + gameId)
-                        .setEmailHtmlContent("If you don't care about product excellence you can stop reading now.\nThe GmsCore team needs your help to ensure a quality and timely launch.\nPlease dial into the release team meeting at %%APPINVITE_LINK_PLACEHOLDER%% ASAP.\nThanks!")
+                        .setEmailHtmlContent("[ACTION REQUIRED] Please dial into this meeting ASAP: %%APPINVITE_LINK_PLACEHOLDER%%")
                         .build();
                 startActivityForResult(intent, 12345);
             }
