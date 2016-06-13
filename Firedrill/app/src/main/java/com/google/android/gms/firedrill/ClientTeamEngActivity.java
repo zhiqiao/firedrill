@@ -11,12 +11,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ClientTeamEngActivity extends Activity {
 
     String gameId;
 
     public static void start(Context context, String gameId) {
         context.startActivity(new Intent(context, ClientTeamEngActivity.class).putExtra("game_id", gameId));
+
+        // Software engineer.
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = database.getReference(gameId);
+        DatabaseReference swe = ref.push();
+        swe.setValue(new ClientTeam());
     }
 
     @Override
