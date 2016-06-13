@@ -3,9 +3,15 @@ package com.google.android.gms.firedrill;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReleaseEngActivity extends Activity {
 
@@ -43,5 +49,17 @@ public class ReleaseEngActivity extends Activity {
 
             }
         });
+    }
+
+    public void onTeamsChanged(List<ClientTeam> clientTeams) {
+        LinearLayout teams = (LinearLayout) findViewById(R.id.teams);
+        teams.removeAllViews();
+        for (ClientTeam team : clientTeams) {
+            CheckBox checkBox = new CheckBox(this);
+            checkBox.setText(team.name);
+            checkBox.setChecked(team.shippable);
+            checkBox.setTextColor(team.shippable ? Color.GREEN : Color.RED);
+            teams.addView(checkBox);
+        }
     }
 }
