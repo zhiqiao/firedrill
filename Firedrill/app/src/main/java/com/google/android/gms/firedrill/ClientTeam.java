@@ -34,6 +34,7 @@ public class ClientTeam {
         codingPercentage += Config.getCodingSpeed();
         if (codingPercentage >= 100) {
             shippable = true;
+            codingPercentage = 0;
         }
     }
 }
