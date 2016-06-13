@@ -12,8 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +37,6 @@ public class ReleaseEngActivity extends Activity {
 
     public static void start(Context context, String gameId) {
         context.startActivity(new Intent(context, ReleaseEngActivity.class).putExtra("game_id", gameId));
-        // Release engineer.
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference re = database.getReference(gameId + "/releaseEngineer");
-        re.setValue(new ReleaseEngineer());
     }
 
     @Override
@@ -73,6 +72,26 @@ public class ReleaseEngActivity extends Activity {
         timer.setTypeface(tf);
         stackTrace = (TextView) findViewById(R.id.stack_trace);
         countdown = new CountDown();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference re = database.getReference(gameId + "/releaseEngineer");
+        re.setValue(new ReleaseEngineer());
+        DatabaseReference teams = database.getReference(gameId + "/teams");
+        teams.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<ClientTeam> teams = new ArrayList();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    teams.add(child.getValue(ClientTeam.class));
+                }
+                onTeamsChanged(teams);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void onTeamsChanged(List<ClientTeam> clientTeams) {

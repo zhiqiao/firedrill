@@ -23,7 +23,7 @@ public class ClientTeamEngActivity extends Activity {
 
         // Software engineer.
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = database.getReference(gameId);
+        final DatabaseReference ref = database.getReference(gameId + "/teams");
         DatabaseReference swe = ref.push();
         swe.setValue(new ClientTeam());
     }
