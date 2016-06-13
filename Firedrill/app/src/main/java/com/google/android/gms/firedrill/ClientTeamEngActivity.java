@@ -16,16 +16,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ClientTeamEngActivity extends Activity {
 
+    DatabaseReference teamRef;
+    ClientTeam team;
+
     String gameId;
 
     public static void start(Context context, String gameId) {
         context.startActivity(new Intent(context, ClientTeamEngActivity.class).putExtra("game_id", gameId));
-
-        // Software engineer.
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = database.getReference(gameId + "/teams");
-        DatabaseReference swe = ref.push();
-        swe.setValue(new ClientTeam());
     }
 
     @Override
@@ -33,6 +30,13 @@ public class ClientTeamEngActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_team_eng);
         gameId = getIntent().getStringExtra("game_id");
+
+        // Software engineer.
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference(gameId + "/teams");
+        teamRef = ref.push();
+        team = new ClientTeam();
+        teamRef.setValue(team);
 
         ((EditText) findViewById(R.id.team_name)).addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,10 +64,12 @@ public class ClientTeamEngActivity extends Activity {
     }
 
     private void onTeamNameChanged(String name) {
-
+        team.name = name;
+        teamRef.setValue(team);
     }
 
     private void code() {
-
+        team.code();
+        teamRef.setValue(team);
     }
 }

@@ -34,9 +34,4 @@ public class ClientTeam {
             shippable = true;
         }
     }
-
-    @Exclude
-    public void setName(String name) {
-        this.name = name;
-    }
 }
