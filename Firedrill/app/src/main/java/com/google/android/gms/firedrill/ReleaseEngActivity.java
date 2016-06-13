@@ -26,6 +26,7 @@ public class ReleaseEngActivity extends Activity {
 
     String gameId;
     int lastRollout = 0;
+    final List<ClientTeam> clientTeams = new ArrayList<>();
 
     TextView percentage;
     SeekBar rollout;
@@ -54,12 +55,19 @@ public class ReleaseEngActivity extends Activity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                Random gen = new Random();
+                int random = gen.nextInt(Math.min(clientTeams.size(), 3));
+                for (int i = 0; i< random; i++) {
+                    int index = gen.nextInt(clientTeams.size());
+                    clientTeams.get(index).shippable = false;
+                }
                 if (lastRollout == 0) {
                     countdown.start();
                 }
                 seekBar.setProgress(++lastRollout);
                 seekBar.setEnabled(false);
                 percentage.setText("Public rollout: " + percentages[lastRollout]);
+
             }
 
             @Override
@@ -80,11 +88,11 @@ public class ReleaseEngActivity extends Activity {
         teams.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<ClientTeam> teams = new ArrayList();
+                clientTeams.clear();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    teams.add(child.getValue(ClientTeam.class));
+                    clientTeams.add(child.getValue(ClientTeam.class));
                 }
-                onTeamsChanged(teams);
+                onTeamsChanged(clientTeams);
             }
 
             @Override
