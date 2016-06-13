@@ -11,16 +11,20 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReleaseEngActivity" />
-        <activity android:name=".ClientTeamEngActivity" />
-        <activity android:name=".WinActivity"></activity>
+        <activity android:name=".ReleaseEngActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ClientTeamEngActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".WinActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
