@@ -122,7 +122,7 @@ public class ReleaseEngActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new AppInviteInvitation.IntentBuilder("Invite")
-                        .setDeepLink(Uri.parse("go/meet/" + gameId))
+                        .setDeepLink(Uri.parse("http://go.ext.google.com/meet/" + gameId))
                         .setMessage("[ACTION REQUIRED] Please dial into this meeting ASAP: go/meet/" + gameId)
                         .build();
                 startActivityForResult(intent, 12345);
