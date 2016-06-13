@@ -7,6 +7,5 @@ public class ReleaseEngineer  {
     public int rolloutPercentage = 0;
 
     public ReleaseEngineer() {
-
     }
 }

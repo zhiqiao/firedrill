@@ -40,13 +40,9 @@ public class MainActivity extends Activity {
                     return;
                 }
                 if (dataSnapshot.getValue() == null) {
-                    // Release engineer.
-                    DatabaseReference re = database.getReference(gameId + "/releaseEngineer");
-                    re.setValue(new ReleaseEngineer());
+                    ReleaseEngActivity.start(MainActivity.this, gameId);
                 } else {
-                    // Software engineer.
-                    DatabaseReference swe = ref.push();
-                    swe.setValue(new SoftwareEngineer());
+                    ClientTeamEngActivity.start(MainActivity.this, gameId);
                 }
                 initialized = true;
             }

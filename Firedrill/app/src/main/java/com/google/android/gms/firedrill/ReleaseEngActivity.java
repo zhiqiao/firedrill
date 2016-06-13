@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,10 @@ public class ReleaseEngActivity extends Activity {
 
     public static void start(Context context, String gameId) {
         context.startActivity(new Intent(context, ReleaseEngActivity.class).putExtra("game_id", gameId));
+        // Release engineer.
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference re = database.getReference(gameId + "/releaseEngineer");
+        re.setValue(new ReleaseEngineer());
     }
 
     @Override
