@@ -65,6 +65,7 @@ public class ReleaseEngActivity extends Activity {
             public void onStartTrackingTouch(SeekBar seekBar) {
                 if (lastRollout == percentages.length - 2) {
                     // We rolled out to 100% and won!
+                    countdown.cancel();
                     WinActivity.start(ReleaseEngActivity.this, gameId);
                     return;
                 }
