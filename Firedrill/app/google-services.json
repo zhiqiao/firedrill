@@ -46,6 +46,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "661750983584-rmd8a8rvqdhl907kblkg5042mrn76oc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.android.gms.firedrill",
+            "certificate_hash": "96C8A2A10407173C50329ED9429C2D02398E79EE"
+          }
+        },
+        {
           "client_id": "661750983584-al9oa7ep6mbala2615cv8ouihucdgfd3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
